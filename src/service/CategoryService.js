@@ -5,6 +5,11 @@ let get = () => {
     try {
       let cate = await db.Category.findAll({
         raw: true,
+        nest: true,
+        attributes: {
+          exclude: ['highlight', 'order', "imgBanner",'createdAt','updatedAt']
+        },
+     
       });
       resolve(cate);
     } catch (error) {

@@ -5,6 +5,16 @@ let get = () => {
     try {
       let pro = await db.Product.findAll({
         raw: true,
+        nest: true,
+        include: [
+          {
+            model : db.Category,
+            attributes: ['id'],
+          },
+        ],
+        attributes:{
+          exclude:['createdAt','updatedAt','status','salePrice','desc']
+        }
       });
       resolve(pro);
     } catch (error) {
